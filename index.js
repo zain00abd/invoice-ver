@@ -1,8 +1,8 @@
 const express = require("express")
+const port = process.env.PORT || 8080;
 const mongoose = require('mongoose');
 const moment = require('moment');
 const index = express();
-const port = process.env.PORT || 8080;
 let day = moment().format('D/M/Y');
 let ocloke = moment().format('LT');
 const dataS = require('./models/datashcema');
