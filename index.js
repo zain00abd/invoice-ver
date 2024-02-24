@@ -18,7 +18,7 @@ index.get('/', (req, res) => {
 
     dataS.find()
         .then((result) => {
-            res.render("index", { arr: result });
+            res.render("home", { arr: result });
 
         })
         .catch((error) => {
