@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="JSBootstrapFile/css/bootstrap.css">
+    <link rel="stylesheet" href="/fonter/css/all.min.css">
+    <link rel="stylesheet" href="/stylecss/styindex.css">
+</head>
+<body style="background-color: #e6f0fc;">
+  <%- include('./components/nav1',{addnone : "block"}) %>
+    <div class="container">
+
+      <div class="mb-5" style="margin-top: 25px;">
+
+        <% arr.forEach(user => { %>
+         
+          <ul class="list-group">
+              <li class="list-group-item d-flex justify-content-between" style="font-weight: 600; margin: 5px; margin-top: 10px;" id="div_user">
+                <div class=" d-flex justify-content-between" style="display: flex; width: 45%;">
+                  <a href="/info/<%= user._id %>" class=""><i class="fa-solid fa-circle-info fa-2xl" style="color: #dbac00;"></i></a>
+                  <div class="vr"></div>
+                  <a href="/view/<%= user._id %>" class="col-6  badge bg-danger rounded-pill" style="font-size:14px; letter-spacing: 1.3px; text-decoration: none;"> <%= user.invoicesprice - user.invoicespay %> </a>
+                </div>
+                <%= user.name %>
+              </li>     
+          </ul>
+  
+        <% }) %>
+      </div>
+
+      
+      
+    </div>
+<!-- Button trigger modal -->
+<button id="btn_name" type="button" class="btn btn-primary d-none" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+  Launch static backdrop modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="direction: rtl;">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">اسم المستخدم</h1>
+        <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+      </div>
+      <div class="modal-body">
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label"> يرجى ادخال اسمك هنا </label>
+          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button id="btn_cname" type="button" class="btn btn-secondary d-none" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" onclick="isname()">ادخال</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <script src="JSBootstrapFile/popper/popper.js"></script>
+    <script src="JSBootstrapFile/js/bootstrap.js"></script>
+    <script>
+      if(localStorage.getItem("name") == undefined){
+
+        document.getElementById("btn_name").click()
+      }
+      let inpname = document.getElementById("exampleInputEmail1")
+      function isname(){
+        if(inpname.value != ''){
+          localStorage.setItem("name",inpname.value)
+          document.getElementById("btn_cname").click()
+        }
+      }
+
+      
+    </script>
+
+<!-- <script>
+  var divUsers = document.querySelectorAll('[id^="div_user"]');
+  var longPressTimer;
+  var isFirstItemSelected = false;
+
+  divUsers.forEach(function(divUser, index) {
+      var isSelected = false;
+
+      // سلوك النقر
+      divUser.addEventListener('click', function() {
+          if (!isFirstItemSelected) {
+              // تحديد العنصر بالضغط العادي إذا لم يتم تحديد العنصر الأول بعد
+              if (!isSelected) {
+                  divUser.classList.add('selected');
+                  isSelected = true;
+              } else {
+                  divUser.classList.remove('selected');
+                  isSelected = false;
+              }
+          } else {
+              // تحديد العنصر بالضغط المطول إذا تم تحديد العنصر الأول بالفعل
+              if (!isSelected) {
+                  divUser.classList.add('selected');
+                  isSelected = true;
+              } else {
+                  divUser.classList.remove('selected');
+                  isSelected = false;
+              }
+          }
+      });
+
+      // منع تنفيذ سلوك النقر العادي عند الضغط المطول
+      divUser.addEventListener('mousedown', function(event) {
+          if (!isFirstItemSelected) {
+              longPressTimer = setTimeout(function() {
+                  divUser.classList.add('selected');
+                  isSelected = true;
+              }, 1000); // تحديد مدة الضغط المطول بثانية واحدة
+          }
+      });
+
+      // إلغاء مؤقت الضغط المطول عند الفصل
+      divUser.addEventListener('mouseup', function(event) {
+          clearTimeout(longPressTimer);
+          if (!isFirstItemSelected) {
+              isFirstItemSelected = true;
+          }
+      });
+  });
+</script> -->
+
+
+</body>
+</html>

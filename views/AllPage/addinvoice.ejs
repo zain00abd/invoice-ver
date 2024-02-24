@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="/JSBootstrapFile/css/bootstrap.css">
+  <link rel="stylesheet" href="/fonter/css/all.min.css">
+  <style>
+    .inp_invoice {
+      border: none;
+      outline: none;
+      font-weight: 500;
+    }
+  </style>
+</head>
+
+<body style="background-color: #e6f0fc; font-weight: 600;">
+
+  <%- include('../components/nav1.ejs', { addnone: "block" }) %>
+
+
+  <div class="container text-center">
+    <table
+    style="width: 100%"
+    class="ms-1 table mt-5 table-striped table-bordered"
+  >
+  
+    <thead>
+      <tr>
+        <th class="fw-normal" scope="col" id="nameuser"><%= user.name %></th>
+        <th scope="col"> الأسم </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= user.addres %></td>
+        <th scope="row">العنوان</th>
+      </tr>
+
+      <tr>
+        <td id="phoneuser"><%= user.phone %></td>
+        <th scope="row">رقم الهاتف</th>
+      </tr>
+
+      
+      <tr>
+        <td class="text-danger"><%= user.invoicesprice %></td>
+        <th scope="row"> اجمالي السحب </th>
+      </tr>
+      
+      <tr>
+        <td class="text-success"><%= user.invoicespay %></td>
+        <th scope="row"> اجمالي المدفوع </th>
+      </tr>
+      
+      <tr class="table-danger">
+        <td class="text-danger"><%= user.invoicesprice - user.invoicespay %></td>
+        <th scope="row"> الحساب الحالي </th>
+      </tr>
+      <!-- <tr>
+        <td>dfgjk</td>
+        <th scope="row">Country</th>
+      </tr>
+
+      <tr>
+        <td>kjhkjhg</td>
+        <th scope="row">Created on</th>
+      </tr>
+
+      <tr>
+        <th scope="row">Last Update</th>
+        <td>fjhkhjfk</td>
+      </tr> -->
+    </tbody>
+  </table>
+
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="direction: rtl;"> 
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">حذف العميل</h1>
+        </div>
+  
+        <div class="modal-body">
+          <div class="mb-3">
+            <label class="form-label"> اسم العميل كما هو مسجل </label>
+            <input type="text" class="form-control" id="name">
+  
+  
+          </div>
+          <div class="mb-3">
+            <label class="form-label"> رقم هاتف العميل </label>
+            <input type="text" class="form-control" id="phone">
+          </div>
+        </div>
+        <p class="text-danger d-none" style="margin-right: 20px;" id="err"> البيانات المدخلة غير متطابقة </p>
+        <div class="modal-footer">
+          <form action="/delet/<%= user._id %>?_method=DELETE" method="post">
+
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> الغاء </button>
+            <button type="button" class="btn btn-danger" onclick="deleteuser()"> تأكيد الحذف </button>
+            <button class="d-none" type="submit" id="sub_delete">
+              1
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <ul class="list-group" style="margin-top: 180px;">
+    <li class="list-group-item d-flex justify-content-between align-items-center list-group-item-light"
+      style="position: fixed; bottom: 0px; width: 100%; height: 50px;">
+      <div style="width: 45%; text-align: center; color: rgb(0, 110, 46);">
+        <button type="button" class="btn btn-danger w-100" id="btn_whats" data-="<%= user.phone %>" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          <!-- <i class="fa-brands fa-whatsapp fa-xl" style="color: #ffffff;"></i> -->
+          حذف العميل
+        </button>
+        <a class="d-none" role="button" id="btn_save" onclick="datapost()">حفظ التغييرات</a>
+      </div>
+
+    </li>
+  </ul>
+
+
+  <!-- Button trigger modal -->
+
+
+<!-- Modal -->
+
+
+
+    <script src="/JSBootstrapFile/popper/popper.js"></script>
+    <script src="/JSBootstrapFile/js/bootstrap.js"></script>
+
+    <!-- <script>
+
+      let bodyinvoice = document.getElementById("body_invoice")
+
+      let index = 0;
+
+      function addinp() {
+        index++;
+
+        const newLi = document.createElement('li');
+        newLi.classList.add('list-group-item', 'd-flex', 'justify-content-between', 'align-items-center','mt-2','mb-2');
+        newLi.id = `inp_${index}`;
+
+        const newInputtitle = document.createElement('input');
+        newInputtitle.classList.add('inp_invoice');
+        newInputtitle.type = 'text';
+        newInputtitle.style.width = '50%';
+        newInputtitle.style.textAlign = 'center';
+        newInputtitle.style.background = 'none';
+
+        const newInputmoney = document.createElement('input');
+        newInputmoney.classList.add('inp_invoice');
+        newInputmoney.type = 'text';
+        newInputmoney.style.width = '50%';
+        newInputmoney.style.textAlign = 'center';
+        newInputmoney.style.background = 'none';
+
+        // إضافة الفئة 'vr' إلى div
+        const vrDiv = document.createElement('div');
+        vrDiv.classList.add('vr');
+
+        newLi.appendChild(newInputtitle);
+        newLi.appendChild(vrDiv);
+        newLi.appendChild(newInputmoney);
+
+        bodyinvoice.appendChild(newLi);
+
+      }
+      addinp()
+
+    </script> -->
+
+    <script>
+     let name = document.getElementById("name")
+     let phone = document.getElementById("phone")
+     let nameuser = document.getElementById("nameuser")
+     let phoneuser = document.getElementById("phoneuser")
+     let err = document.getElementById("err")
+     let subdelete = document.getElementById("sub_delete")
+
+     function deleteuser(){
+      if(name.value == nameuser.innerHTML && phone.value == phoneuser.innerHTML){
+        subdelete.click()
+      }
+      else{
+        err.className = "text-danger d-block"
+      }
+      
+     }
+
+    </script>
+
+</body>
+
+</html>

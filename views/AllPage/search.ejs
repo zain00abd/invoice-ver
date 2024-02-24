@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>search</title>
+    <link rel="stylesheet" href="JSBootstrapFile/css/bootstrap.css">
+    <link rel="stylesheet" href="/fonter/css/all.min.css">
+</head>
+
+<body style="background-color: #e6f0fc;">
+    <%- include('../components/nav1',{addnone : "block"}) %>
+        <div class="container">
+
+            <div class="mb-5" style="margin-top: 25px;">
+
+
+
+                <% user.forEach(user => { %>
+                 
+                    <ul class="list-group">
+                        <li class="list-group-item d-flex justify-content-between" style="font-weight: 600; margin: 5px; margin-top: 10px;">
+                          <div class=" d-flex justify-content-between" style="display: flex; width: 45%;">
+                            <a href="/view/<%= user._id %>" class=""><i class="fa-solid fa-circle-info fa-2xl" style="color: #dbac00;"></i></a>
+                            <div class="vr"></div>
+                            <a href="/addinvoice" class="col-6  badge bg-danger rounded-pill" style="font-size:14px; letter-spacing: 1.3px; text-decoration: none;"> <%= user.invoicesprice - user.invoicespay %> </a>
+                          </div>
+                          <%= user.name %>
+                        </li>     
+                    </ul>
+                <% }) %>
+
+
+            </div>
+
+
+        </div>
+
+        <script src="JSBootstrapFile/popper/popper.js"></script>
+        <script src="JSBootstrapFile/js/bootstrap.js"></script>
+</body>
+
+</html>

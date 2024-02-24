@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add User</title>
+    <link rel="stylesheet" href="JSBootstrapFile/css/bootstrap.css">
+    <link rel="stylesheet" href="/fonter/css/all.min.css">
+    <link rel="stylesheet" href="/stylecss/styleadd.css">
+
+</head>
+<body style="background-color: rgb(230, 240, 252);">
+    <%- include('../components/nav1.ejs',{ addnone: "none" }) %>
+    <h4> اضافة عميل جديد </h4>
+    <div class="container mt-3">
+        
+        <form style="direction: rtl;" action="/adduser" method="post">
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label"> أسم العميل </label>
+              <input type="text" name="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" >
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label"> العنوان </label>
+              <input type="text" name="addres" class="form-control" id="exampleInputPassword1">
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label"> رقم الهاتف </label>
+                <input type="number" name="phone" class="form-control" id="exampleInputPassword1">
+                <input style="display: none;" type="number" name="invoicesprice" class="form-control" id="exampleInputPassword1" value="0">
+                <input style="display: none;" type="number" name="invoicespay" class="form-control" id="exampleInputPassword1" value="0">
+              </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+
+    <script src="JSBootstrapFile/popper/popper.js"></script>
+    <script src="JSBootstrapFile/js/bootstrap.js"></script>
+</body>
+</html>

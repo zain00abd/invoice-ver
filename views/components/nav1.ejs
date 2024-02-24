@@ -1,0 +1,41 @@
+
+
+
+<nav class="navbar sticky-top navbar-expand-lg " style="font-weight: 600; background-color: #f0f3ffea;">
+  <div class="container-fluid">
+    <button class="navbar-toggler" style="border: none;" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <a class="d-lg-none" href="/"><i class="fa-solid fa-house-user fa-2xl" style="color: #005186;"></i></a>
+    <a href="/adduser" class=" text-white <%= addnone == "none" ? "d-none" : "d-lg-none" %> " style="background: linear-gradient(to right, #008efa,#8400ff); text-decoration: none; padding:5px; border-radius:10px; transform:scale(1.1);">
+      <i class="fa-solid fa-plus fa-fade fa-lg" style="color: #ffffff;"></i>
+      اضافة
+    </a>
+    
+    
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+      
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item d-none d-lg-block">
+          <a class="nav-link active" aria-current="page" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+        </li>
+        <form action="/search" method="post" class="d-flex m-auto" role="search">
+          <input class="form-control me-2" name="textsearch" type="search" placeholder="Search" aria-label="Search" value="">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+      </ul>
+    </div>
+    
+    <a href="/adduser" class=" text-white <%= addnone == "none" ? "d-none" : "d-none d-lg-block" %> " style="background: linear-gradient(to right, #008efa,#8400ff); text-decoration: none; padding:5px; border-radius:10px; transform:scale(1.1);">
+      <i class="fa-solid fa-plus fa-fade fa-lg" style="color: #ffffff;"></i>
+      اضافة
+    </a>
+  </div>
+</nav>
